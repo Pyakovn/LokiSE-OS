@@ -9,40 +9,40 @@
 using namespace std;
 namespace fs = std::filesystem;
 
-// Функция проверяет, можно ли строку s полностью преобразовать в число типа double
+// ??????? ?????????, ????? ?? ?????? s ????????? ????????????? ? ????? ???? double
 bool isDouble(const string& s) {
     try {
         size_t pos;
-        stod(s, &pos);         // пытаемся преобразовать строку в double
-        return pos == s.size(); // проверяем, что ВСЯ строка была числом
+        stod(s, &pos);         // ???????? ????????????? ?????? ? double
+        return pos == s.size(); // ?????????, ??? ??? ?????? ???? ??????
     } catch (...) {
-        return false;           // если ошибка — значит, это не корректное double-число
+        return false;           // ???? ?????? � ??????, ??? ?? ?????????? double-?????
     }
 }
 
-// Функция проверяет, можно ли строку s полностью преобразовать в целое число
+// ??????? ?????????, ????? ?? ?????? s ????????? ????????????? ? ????? ?????
 bool isInteger(const string& s) {
     try {
-        size_t pos;          // переменная для хранения позиции первого нецифрового символа
-        stoll(s, &pos);       // пытаемся преобразовать строку в int
-                             // если удачно, pos будет указывать на следующий символ после числа
+        size_t pos;          // ?????????? ??? ???????? ??????? ??????? ??????????? ???????
+        stoll(s, &pos);       // ???????? ????????????? ?????? ? int
+                             // ???? ??????, pos ????? ????????? ?? ????????? ?????? ????? ?????
 
-        return pos == s.size();  // если вся строка — число, pos будет равен длине строки
+        return pos == s.size();  // ???? ??? ?????? � ?????, pos ????? ????? ????? ??????
     } catch (...) {
-        return false;  // если преобразование вызвало исключение (например, не число) — возвращаем false
+        return false;  // ???? ?????????????? ??????? ?????????? (????????, ?? ?????) � ?????????? false
     }
 }
 
-// Функция для вызова редактора файла txt
+// ??????? ??? ?????? ????????? ????? txt
 void openEditor(const string& filename) {
 #ifdef _WIN32
-    // Windows: откроется блокнот
+    // Windows: ????????? ???????
     system(("notepad " + filename).c_str());
 #elif __APPLE__
-    // macOS: откроется TextEdit
+    // macOS: ????????? TextEdit
     system(("open -e " + filename).c_str());
 #else
-    // Linux или Unix-подобная: откроется nano
+    // Linux ??? Unix-????????: ????????? nano
     system(("nano " + filename).c_str());
 #endif
 }
@@ -59,8 +59,46 @@ int main() {
 
         if (command == "?" || command == "help" || command == "HELP" || command == "Help")
 		{
-            puts("\nINFORMATION: LOKISE OS V1.0");
-            puts("INFORMATION: CREATED BY PYAKOVN@RO.RU AND LOKISE@GMAIL.COM\n\n");
+            else if (command == "?" || command == "help" || command == "HELP" || command == "Help") {
+    puts("\n=================================== LOKISE OS HELP =================================");
+    puts("VERSION: LOKISE OS V1.0");
+    puts("CREATED BY: PYAKOVN@RO.RU AND LOKISE@GMAIL.COM");
+    puts("\nAVAILABLE COMMANDS:");
+    puts("--------------------------------------------------------------------------------");
+    puts("? / help / HELP / Help    - Display this help screen with all commands");
+    puts("                          description and system information.");
+    puts("");
+    puts("CALC / calc / Calc        - Launch the calculator. Prompts for:");
+    puts("                          1. First number (double or integer)");
+    puts("                          2. Operation (+, -, *, /)");
+    puts("                          3. Second number (double or integer)");
+    puts("                          Supports decimal numbers and basic arithmetic.");
+    puts("");
+    puts("RAND / rand / Rand        - Generate a random number with specified");
+    puts("                          number of digits. Prompts for digit count");
+    puts("                          (must be positive integer). First digit is");
+    puts("                          1�9, subsequent digits are 0�9.");
+    puts("");
+    puts("TEXT / Text / text        - Open a text file in the system's default");
+    puts("                          editor. Prompts for filename. File must exist");
+    puts("                          in current directory. On Windows: Notepad,");
+    puts("                          on macOS: TextEdit, on Linux/Unix: nano.");
+    puts("");
+    puts("EXIT / exit / Exit        - Gracefully exit the system. Displays logout");
+    puts("                          countdown (3, 2, 1 seconds) and returns");
+    puts("                          exit code 0.");
+    puts("");
+    puts("CRASH / crash / Crash     - Simulate a system crash. Displays error");
+    puts("                          message, logout countdown, and returns exit");
+    puts("                          code 9 (error state).");
+    puts("--------------------------------------------------------------------------------");
+    puts("NOTES:");
+    puts("- All commands are case-insensitive.");
+    puts("- Invalid input is handled with appropriate error messages.");
+    puts("- Use quotation marks if filename contains spaces (not supported in this");
+    puts("  version - files with spaces may cause issues in editor launch).");
+    puts("============================================================================");
+}
         }
 		
 		else if (command =="CALC" || command == "calc" || command == "Calc")	

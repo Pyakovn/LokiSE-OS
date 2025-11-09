@@ -62,7 +62,7 @@ int main() {
             else if (command == "?" || command == "help" || command == "HELP" || command == "Help") {
     puts("\n=================================== LOKISE OS HELP =================================");
     puts("VERSION: LOKISE OS V1.0");
-    puts("CREATED BY: PYAKOVN@RO.RU AND LOKISE@GMAIL.COM");
+    puts("CREATED BY: PYAKOVN@RO.RU");
     puts("\nAVAILABLE COMMANDS:");
     puts("--------------------------------------------------------------------------------");
     puts("? / help / HELP / Help    - Display this help screen with all commands");
